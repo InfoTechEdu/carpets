@@ -1,0 +1,21 @@
+.BackButton{
+    background-color: #2B3344;
+    width: 40px;
+    height: 40px;
+    border-radius: 100px;
+    border:none;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 10;
+    transition: .3s;
+    opacity: .8;
+}
+.BackButton svg{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.BackButton:hover{
+    opacity: 1;
+}

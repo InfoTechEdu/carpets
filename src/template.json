@@ -1,0 +1,42 @@
+[
+    {
+        "code":"DT03071_102",
+        "form":"square",
+        "image":"carpet.png",
+        "wblink":"https://www.wildberries.ru/",
+        "categoryname":"Коврики для детской",
+        "texture":"tex2.jpg"
+    },
+    {
+        "code":"DT02039_101",
+        "form":"square",
+        "image":"carpet2.png",
+        "wblink":"https://www.wildberries.ru/",
+        "categoryname":"Коврики для детской",
+        "texture":"tex1.jpg"
+    },
+    {
+        "code":"BPR22543_101",
+        "form":"oval",
+        "image":"carpet.png",
+        "wblink":"https://www.wildberries.ru/",
+        "categoryname":"Коврики для детской",
+        "texture":"tex1.jpg"
+    },
+    {
+        "code":"DT03658_105",
+        "form":"square",
+        "image":"carpet2.png",
+        "wblink":"https://www.wildberries.ru/",
+        "categoryname":"Коврики для детской",
+        "texture":"tex2.jpg"
+    },
+    {
+        "code":"DT073658_105",
+        "form":"oval",
+        "image":"carpet.png",
+        "wblink":"https://www.wildberries.ru/",
+        "categoryname":"Коврики для детской",
+        "texture":"tex1.jpg"
+    }
+]

@@ -1,0 +1,14 @@
+.BottomInfo{
+    height: 25vh;
+    background-color: #fff;
+    padding: 30px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: auto;
+}
+@media (max-width:769px) {
+    .BottomInfo{
+        height: 30vh;
+    }
+}

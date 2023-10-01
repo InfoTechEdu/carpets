@@ -1,0 +1,12 @@
+.CarpetModel{
+    position: relative;
+    height: 75vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+@media (max-width:769px) {
+    .CarpetModel{
+        height: 70vh;
+    }
+}

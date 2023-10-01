@@ -1,0 +1,32 @@
+.category-wrapper{
+    display: flex;
+    align-items: center;
+    overflow: scroll hidden;
+}
+.category-wrapper::-webkit-scrollbar{
+    display: none;
+}
+.category-item{
+    padding: 7px 14px;
+    border-radius: 6px;
+    background: #F6F7F8;
+    margin-right: 10px;
+    text-align: center;
+    font-weight: 400;
+    font-size: 16px;
+    transition: .3s ease-in-out;
+    cursor: pointer;
+}
+.category-item.active{
+    background: #2EC4B6;
+    color: #FFF;
+    font-weight: 400;
+    /* font-family: Poppins; */
+    font-size: 16px;
+}
+.category-item:hover{
+    background-color: #91e6de;
+}
+.category-item p{
+    margin: 0;
+}
