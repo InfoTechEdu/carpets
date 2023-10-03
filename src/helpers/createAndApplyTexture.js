@@ -1,7 +1,7 @@
 export const createAndApplyTexture = async (channel = "normalTexture", path = "",view) => {
     try {
       if (view) {
-        let material = view?.model?.materials[0];
+        let material = view?.model?.materials[1];
       if (path === "None") {
         if (material) {
           material[channel].setTexture(null);

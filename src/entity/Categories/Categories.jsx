@@ -7,17 +7,15 @@ export default function Categories() {
     const categories = [
         {categoryru:"Все",slug:"all"},
         {categoryru:"Детская",slug:"Коврики для детской"},
-        {categoryru:"Ванная",slug:"toilet"},
-        {categoryru:"Гостинная",slug:"mainroom"},
-        {categoryru:"Спальня",slug:"sliperoom"},
+        {categoryru:"Молитва",slug:"Коврики для молильной"},
+        {categoryru:"Прихожая",slug:"Коврики для прихожей"},
     ]
   const changeCategory = (en) => {
     setFilter(en)
   }
   const ref = useRef();
   useEffect(() => {
-    console.log(ref?.current);
-    ref?.current.scrollTo({
+    ref?.current?.scrollTo({
       left:100,
       behavior:"smooth"
     })

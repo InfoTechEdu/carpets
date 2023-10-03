@@ -4,25 +4,33 @@ import BottomInfo from '../entity/BottomInfo/BottomInfo'
 import CarpetModel from '../entity/CarpetModel/CarpetModel';
 import { useParams } from 'react-router-dom';
 import { StorageServices } from '../services/StorageServices/StorageServices';
+import { useProductsStore } from './Main';
+import Loader from '../ui/Loader/Loader';
 
-const all = require("../template.json");
 export default function Carpet() {
+    const all = useProductsStore(state => state.products)
     const {id} = useParams();
-    const [carpet, setcarpet] = useState({})
+    const [carpet, setcarpet] = useState(false)
+    const [load, setload] = useState(true)
     useEffect(() => {
-      async function asnc() {
-        const carpetfind = all.find((el) => el.code === id)
-        const textname = carpetfind.texture;
-        const url = await StorageServices.getTexture(textname)
-        setcarpet({...carpetfind,texture:url})
-      }
-      asnc()
-    },[])
+      console.log(all);
+        all.forEach((el) => {
+          if (el.Код === id) {
+            StorageServices.getTexture(el?.Текстура)
+            .then(url => {
+              if (el) {
+                setcarpet({...el,texture:url})
+                setload(false)
+              }
+            })
+          }
+        })
+    },[load,all])
   return (
     <div className="carpet" >
         <div className='container mt-3'>
-            <BackButton />
-            <CarpetModel textureImage={carpet?.texture} typeform={carpet?.form}/>
+              <BackButton />
+              <CarpetModel load={load} textureImage={carpet?.Текстура} typeform={carpet?.Форма}/>
         </div>
         <BottomInfo carpet={carpet}/>
     </div>

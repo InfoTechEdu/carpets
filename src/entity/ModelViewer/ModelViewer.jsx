@@ -6,7 +6,7 @@ import { createAndApplyTexture } from '../../helpers/createAndApplyTexture';
 import toast from 'react-hot-toast';
 
 
-export const ModelViewer = ({type = "square",textureImage = "",alt}) => {
+export const ModelViewer = ({type = "square",textureImage = "",alt,isLoad}) => {
   const modelViewerTexture = useRef();
   const [load, setload] = useState(true)
   const [error, seterror] = useState(false)
@@ -39,7 +39,7 @@ export const ModelViewer = ({type = "square",textureImage = "",alt}) => {
   },[])
   return (
       <>
-      {load && <Loader text={"Идет загрузка модели ковра"} />} 
+      {(load || isLoad) && <Loader text={"Идет загрузка модели ковра"} />} 
       {!error && <model-viewer
       ref={modelViewerTexture}
       id={!load ? "vieweractive" : "viewer"}
