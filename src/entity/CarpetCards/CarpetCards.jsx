@@ -19,7 +19,11 @@ export default function CarpetCards() {
       } else {
         if (carpets?.length === 0) {
           products.forEach((el) => {
+            console.log("Product: " + JSON.stringify(el));
+            //#edit. Fix
+            el.Изображение = el.Изображение.replace(".png", ".jpg");
             StorageServices.getImage(el?.Изображение).then(url => {
+              console.log("Url was get: " + url);
               const obj = {
                 ...el,
                 Изображение: url

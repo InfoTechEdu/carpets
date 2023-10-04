@@ -45,7 +45,25 @@ export const ModelViewer = ({ type = "square", textureImage = "", alt, isLoad })
         ref={modelViewerTexture}
         id={!load ? "vieweractive" : "viewer"}
         loading="lazy"
-        src={type === "square" ? require("../../assets/3dmodels/carpet.glb") : require("../../assets/3dmodels/ovalcarpet.glb")}
+        src={
+          (() => {
+            switch (type) {
+              case "square":
+                return require("../../assets/3dmodels/squarecarpet.glb");
+              case "square_with_edges":
+                  return require("../../assets/3dmodels/squarecarpet_withedges.glb");
+              case "oval_small":
+                return require("../../assets/3dmodels/ovalcarpet_small.glb");
+              case "oval_big":
+                return require("../../assets/3dmodels/ovalcarpet_big.glb");
+              case "circle":
+                return require("../../assets/3dmodels/circlecarpet.glb");
+              default:
+                return require("../../assets/3dmodels/squarecarpet.glb");
+            }
+          })()
+        }
+        // src={type === "square" ? require("../../assets/3dmodels/carpet.glb") : require("../../assets/3dmodels/ovalcarpet.glb")}
         alt={alt}
         ar
         camera-controls

@@ -13,7 +13,7 @@ function App() {
   useLayoutEffect(() => {
     const readFile = async () => {
       try {
-        const link = await StorageServices.getExel("gs://amour-fleurs-ar.appspot.com/CarpetsTemplate2.xlsx")
+        const link = await StorageServices.getExel("gs://amour-fleurs-ar.appspot.com/CarpetsTemplate3.xlsx")
         const workbook = read(link,{type:'binary'});
         const sheetName = workbook.SheetNames[0];
         const worksheet = workbook.Sheets[sheetName];
