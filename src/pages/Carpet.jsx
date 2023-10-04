@@ -13,7 +13,6 @@ export default function Carpet() {
     const [carpet, setcarpet] = useState(false)
     const [load, setload] = useState(true)
     useEffect(() => {
-      console.log(all);
         all.forEach((el) => {
           if (el.Код === id) {
             StorageServices.getTexture(el?.Текстура)

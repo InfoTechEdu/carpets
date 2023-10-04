@@ -11,6 +11,7 @@ export const createAndApplyTexture = async (channel = "normalTexture", path = ""
         }
     } else if (path) {
         // Creates a new texture.
+        path = path.replace("gs://", "https://storage.googleapis.com/");
         const texture = await view?.createTexture(path)
         // Set the texture name
         texture.name = path.toLowerCase();
