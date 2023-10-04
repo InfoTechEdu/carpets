@@ -11,12 +11,12 @@ export const useProductsStore = create((set) => ({
   }))
 }))
 
-export default function Main() {
+export default function Main({load,setload}) {
   return (
     <div className='container mt-3'>
         <h3 className='mb-2'>Выберите ковер</h3>
         <Categories />
-        <CarpetCards />
+        <CarpetCards load={load} setload={setload} />
     </div>
   )
 }

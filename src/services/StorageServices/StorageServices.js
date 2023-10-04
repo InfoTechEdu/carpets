@@ -22,10 +22,11 @@ class StorageServicesClass{
             console.log(error);
         }
     }
-    async getImage(path) {
+    getImage(path) {
         try {
             const imagefer = ref(storage,path)
-            const imageurl = await getDownloadURL(imagefer)
+            // const imageurl = await getDownloadURL(imagefer)
+            const imageurl = path.replace("gs://", "https://storage.googleapis.com/")
             return imageurl;
         } catch (error) {
             console.log(error);

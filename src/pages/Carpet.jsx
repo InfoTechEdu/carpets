@@ -5,7 +5,6 @@ import CarpetModel from '../entity/CarpetModel/CarpetModel';
 import { useParams } from 'react-router-dom';
 import { StorageServices } from '../services/StorageServices/StorageServices';
 import { useProductsStore } from './Main';
-import Loader from '../ui/Loader/Loader';
 
 export default function Carpet() {
     const all = useProductsStore(state => state.products)

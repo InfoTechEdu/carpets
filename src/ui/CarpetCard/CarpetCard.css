@@ -1,9 +1,11 @@
 .CarpetCard{
     text-decoration: none;
     display: block;
+    opacity: 0.1;
 }
 .CarpetCardImage{
     width: 100%;
+    height: 400px;
     overflow: hidden;
     border-radius: 6px;
 }
@@ -38,3 +40,8 @@
         opacity: 1;
     }
 }
+@media (max-width:769px) {
+    .CarpetCardImage{
+        height: 200px;
+    }
+}   

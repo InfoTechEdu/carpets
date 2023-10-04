@@ -12,9 +12,9 @@ export default function CarpetCard({carpet}) {
         }
         let cb = (entries,observer) => {
           if (entries[0].isIntersecting) {
-            setTimeout(() => { 
-              setvisible(carpet?.id)
-             }, Math.random() * 1000)
+            // setTimeout(() => { 
+            //   setvisible(carpet?.id)
+            //  }, Math.random() * 500)
           }
         };
         observer.current = new IntersectionObserver(cb);
@@ -22,7 +22,7 @@ export default function CarpetCard({carpet}) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
   return (
-    <Link ref={element} to={`/carpet/${carpet?.Код}`} className={'CarpetCard'}>
+    <Link ref={element} to={`/carpet/${carpet?.Код}`} className={['CarpetCard',"anim"].join(' ')}>
         <div className="CarpetCardImage">
              <img src={carpet?.Изображение} alt={carpet?.Код} />
         </div>

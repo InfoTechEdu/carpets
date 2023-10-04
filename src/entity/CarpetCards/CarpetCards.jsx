@@ -7,33 +7,17 @@ import { useProductsStore } from '../../pages/Main'
 import { StorageServices } from '../../services/StorageServices/StorageServices'
 
 
-export default function CarpetCards() {
+export default function CarpetCards({load,setload}) {
     const products = useProductsStore((state) => state.products)
-    const [carpetsm, setCarpetsm] = useState([])
     const [carpets, setCarpets] = useState([])
-    const [load, setload] = useState(true)
     const filtredAt = useCategoryFilterStore(state => state.filtredAt)
     useEffect(() => {
       if (filtredAt !== "all") {
-        setCarpets(carpetsm.filter(el => el.Категория === filtredAt))
+        setCarpets(products.filter(el => el.Категория === filtredAt))
       } else {
-        if (carpets?.length === 0) {
-          products.forEach((el) => {
-            StorageServices.getImage(el?.Изображение).then(url => {
-              const obj = {
-                ...el,
-                Изображение: url
-                }
-                setCarpets(carpets => [...carpets,obj])
-                setCarpetsm(carpets => [...carpets,obj])
-                setload(false)
-            })
-          })
-        } else {
-          setCarpets(carpetsm)
-        }
+        setCarpets(products)
       }
-    },[filtredAt, products])
+    },[filtredAt, products,load])
     let lastElement = useRef()
     useObserver(lastElement,carpets?.length > products?.length,false, () => {
 
