@@ -1,4 +1,4 @@
-import { getBytes, getDownloadURL, ref } from "firebase/storage";
+import { getBytes, getDownloadURL, getMetadata, ref } from "firebase/storage";
 import { storage } from "../../firebase";
 
 class StorageServicesClass{
@@ -6,6 +6,9 @@ class StorageServicesClass{
     async getTexture(path) {
         try {
             const fileRef = ref(storage,path)
+            const meta = await getMetadata(fileRef);
+
+            console.log("Metadata: " + JSON.stringify(meta));
             const url = await getDownloadURL(fileRef)
             return url;
         } catch (error) {
@@ -15,7 +18,6 @@ class StorageServicesClass{
     async getExel(path) {
         try {
             const fileRef = ref(storage,path)
-
             const url = await getBytes(fileRef)
             return url;
         } catch (error) {

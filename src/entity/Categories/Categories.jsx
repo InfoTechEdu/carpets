@@ -6,9 +6,11 @@ export default function Categories() {
   const setFilter = useCategoryFilterStore(state => state.setFilter)
     const categories = [
         {categoryru:"Все",slug:"all"},
-        {categoryru:"Детская",slug:"Коврики для детской"},
-        {categoryru:"Молитва",slug:"Коврики для молильной"},
+        {categoryru:"Детские",slug:"Коврики для детской"},
+        {categoryru:"Молитва",slug:"Коврики для молитвы"},
         {categoryru:"Прихожая",slug:"Коврики для прихожей"},
+        {categoryru:"Ванная",slug:"Коврики для ванной"},
+        {categoryru:"Фигурные",slug:"Фигурные"},
     ]
   const changeCategory = (en) => {
     setFilter(en)

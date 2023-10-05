@@ -6,7 +6,7 @@ import { createAndApplyTexture } from '../../helpers/createAndApplyTexture';
 import toast from 'react-hot-toast';
 
 
-export const ModelViewer = ({type = "square",textureImage = "",alt,isLoad}) => {
+export const ModelViewer = ({ type = "square", textureImage = "", alt, textureLength, textureWidth, isLoad }) => {
   const modelViewerTexture = useRef();
   const [load, setload] = useState(true)
   const [error, seterror] = useState(false)
@@ -14,17 +14,27 @@ export const ModelViewer = ({type = "square",textureImage = "",alt,isLoad}) => {
   // require("../../assets/images/tex1.png")
   useLayoutEffect(() => {
     if (modelViewerTexture?.current && load && textureImage) {
-      modelViewerTexture?.current.addEventListener("load",(e) => {
-        createAndApplyTexture('normalTexture',textureImage,modelViewerTexture?.current)
-        .then(() => {
-          setload(false)
-        })
-        .catch(err => console.log(err))
-        .finally(() => {
-          setload(false)
-        })
+      modelViewerTexture?.current.addEventListener("load", (e) => {
+        console.log("texture: load")
+        // console.log("length and width: " + textureLength + "  " + textureWidth);
+        if(textureLength && textureWidth){
+          console.log("Rescaling... Previous model scale: " + modelViewerTexture?.current.scale)
+          let scaleFactor = textureLength / textureWidth;
+          modelViewerTexture.current.scale = `${textureLength / 100} ${1} ${textureWidth / 100}`;
+          console.log("Rescaled Current model scale: " + modelViewerTexture?.current.scale)
+        }
+        
+
+        createAndApplyTexture('baseColorTexture', textureImage, modelViewerTexture?.current, textureLength, textureWidth)
+          .then(() => {
+            setload(false)
+          })
+          .catch(err => console.log(err))
+          .finally(() => {
+            setload(false)
+          })
       })
-      modelViewerTexture?.current.addEventListener("error",(e) => {
+      modelViewerTexture?.current.addEventListener("error", (e) => {
         if (e.detail.type === "loadfailure") {
           setload(false)
           seterror(true)
@@ -36,22 +46,73 @@ export const ModelViewer = ({type = "square",textureImage = "",alt,isLoad}) => {
         }
       })
     }
-  },[])
+  }, [])
   return (
-      <>
-      {(load || isLoad) && <Loader text={"Идет загрузка модели ковра"} />} 
+    <>
+      {(load || isLoad) && <Loader text={"Идет загрузка модели ковра"} />}
       {!error && <model-viewer
-      ref={modelViewerTexture}
-      id={!load ? "vieweractive" : "viewer"}
-      loading="lazy"
-      src={type === "square" ? require("../../assets/3dmodels/carpet.glb") : require("../../assets/3dmodels/ovalcarpet.glb")} 
-      alt={alt}
-      camera-controls
+        ref={modelViewerTexture}
+        id={!load ? "vieweractive" : "viewer"}
+        loading="lazy"
+        src={
+          (() => {
+            switch (type) {
+              case "square":
+                return require(`../../assets/3dmodels/squarecarpet.glb`);
+                // return require("../../assets/3dmodels/squarecarpet.glb");
+              case "square_with_edges":
+                  return require("../../assets/3dmodels/squarecarpet_withedges.glb");
+              case "oval_small":
+                return require("../../assets/3dmodels/ovalcarpet_small.glb");
+              case "oval_big":
+                return require("../../assets/3dmodels/ovalcarpet_big.glb");
+              case "circle":
+                return require("../../assets/3dmodels/circlecarpet.glb");
+              case "leopard":
+                return require("../../assets/3dmodels/leopardcarpet.glb");
+              case "zebra":
+                  return require("../../assets/3dmodels/zebracarpet.glb");
+              default:
+                return require("../../assets/3dmodels/squarecarpet.glb");
+            }
+          })()
+        }
+        // src={type === "square" ? require("../../assets/3dmodels/carpet.glb") : require("../../assets/3dmodels/ovalcarpet.glb")}
+        alt={alt}
+        ar
+        camera-controls
       >
-        <div className='ico'>
-          <img src={require("../../assets/images/ico.png")} alt="" />
-        </div>
+
+        {/* slot="ar-button" */}
+        <button
+          slot='ar-button'
+          style={{
+            backgroundColor: '#20A4F3',
+            color: "white",
+            borderRadius: '50px',
+            border: 'none',
+            position: 'fixed',
+            bottom: '16px',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            padding: '10px 20px',
+            boxShadow: '0px 2px 5px rgba(0, 0, 0, 0.3)',
+            justifyContent: 'center', // Добавлено для выравнивания содержимого по горизонтали
+            whiteSpace: 'nowrap', // Предотвращает перенос текста на новую строку
+          }}
+        >
+          <img src={
+            require("../../assets/images/view_icon_white.png")}
+            alt="иконка"
+            style={{ marginRight: '10px', width: '20px', height: '20px' }} />
+          <span style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>Примерить на свой пол</span>
+        </button>
+        {/* <div className='ico'> */}
+        {/* <img src={require("../../assets/images/ico.png")} alt="" /> */}
+
+        {/* </div> */}
+
       </model-viewer>}
-      </>
+    </>
   )
 }

@@ -1,31 +1,31 @@
-.CarpetCard{
+.CarpetCard {
     text-decoration: none;
     display: block;
     opacity: 0.1;
 }
-.CarpetCardImage{
+.CarpetCardImage {
     width: 100%;
     height: 400px;
     overflow: hidden;
     border-radius: 6px;
 }
-.CarpetCardImage img{
+.CarpetCardImage img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
 }
-.CarpetCardTitle{
+.CarpetCardTitle {
     text-decoration: none;
     color: #000;
     font-size: 16px;
     margin-top: 0.6rem;
-    margin-bottom: 0.1rem;
+    margin-bottom: 0.3rem; /* Изменен отступ снизу */
 }
-.CarpetCardCategory{
+.CarpetCardCategory {
     text-decoration: none;
     color: #AAAAAC;
     font-size: 16px;
-    margin-bottom: 0;
+    margin-bottom: 0.1rem;
 }
 .anim{
     animation: fade 0.5s forwards;
