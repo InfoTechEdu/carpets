@@ -6,7 +6,7 @@ import { createAndApplyTexture } from '../../helpers/createAndApplyTexture';
 import toast from 'react-hot-toast';
 
 
-export const ModelViewer = ({ type = "square", textureImage = "", alt, isLoad }) => {
+export const ModelViewer = ({ type = "square", textureImage = "", alt, textureLength, textureWidth, isLoad }) => {
   const modelViewerTexture = useRef();
   const [load, setload] = useState(true)
   const [error, seterror] = useState(false)
@@ -16,7 +16,16 @@ export const ModelViewer = ({ type = "square", textureImage = "", alt, isLoad })
     if (modelViewerTexture?.current && load && textureImage) {
       modelViewerTexture?.current.addEventListener("load", (e) => {
         console.log("texture: load")
-        createAndApplyTexture('normalTexture', textureImage, modelViewerTexture?.current)
+        // console.log("length and width: " + textureLength + "  " + textureWidth);
+        if(textureLength && textureWidth){
+          console.log("Rescaling... Previous model scale: " + modelViewerTexture?.current.scale)
+          let scaleFactor = textureLength / textureWidth;
+          modelViewerTexture.current.scale = `${textureLength / 100} ${1} ${textureWidth / 100}`;
+          console.log("Rescaled Current model scale: " + modelViewerTexture?.current.scale)
+        }
+        
+
+        createAndApplyTexture('baseColorTexture', textureImage, modelViewerTexture?.current, textureLength, textureWidth)
           .then(() => {
             setload(false)
           })
@@ -49,7 +58,8 @@ export const ModelViewer = ({ type = "square", textureImage = "", alt, isLoad })
           (() => {
             switch (type) {
               case "square":
-                return require("../../assets/3dmodels/squarecarpet.glb");
+                return require(`../../assets/3dmodels/squarecarpet.glb`);
+                // return require("../../assets/3dmodels/squarecarpet.glb");
               case "square_with_edges":
                   return require("../../assets/3dmodels/squarecarpet_withedges.glb");
               case "oval_small":
@@ -58,6 +68,10 @@ export const ModelViewer = ({ type = "square", textureImage = "", alt, isLoad })
                 return require("../../assets/3dmodels/ovalcarpet_big.glb");
               case "circle":
                 return require("../../assets/3dmodels/circlecarpet.glb");
+              case "leopard":
+                return require("../../assets/3dmodels/leopardcarpet.glb");
+              case "zebra":
+                  return require("../../assets/3dmodels/zebracarpet.glb");
               default:
                 return require("../../assets/3dmodels/squarecarpet.glb");
             }

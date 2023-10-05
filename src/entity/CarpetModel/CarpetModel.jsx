@@ -3,7 +3,7 @@ import React, { useLayoutEffect, useState } from 'react'
 import './CarpetModel.css'
 import { ModelViewer } from '../ModelViewer/ModelViewer';
 
-export default function CarpetModel({textureImage,typeform,load}) {
+export default function CarpetModel({textureImage,typeform,load, textureLength, textureWidth}) {
     const [texture, settexture] = useState(textureImage)
     const [type, settype] = useState("square")
     useLayoutEffect(() => {
@@ -15,7 +15,7 @@ export default function CarpetModel({textureImage,typeform,load}) {
     // square
   return (
     <div className='CarpetModel'>
-        {texture && <ModelViewer isLoad={load} type={type} textureImage={texture} alt="uploads_files_3998079_burger_2.glb" />}
+        {texture && <ModelViewer isLoad={load} type={type} textureImage={texture} textureLength={textureLength} textureWidth={textureWidth} alt="uploads_files_3998079_burger_2.glb" />}
     </div>
   )
 }

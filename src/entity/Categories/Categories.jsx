@@ -10,6 +10,7 @@ export default function Categories() {
         {categoryru:"Молитва",slug:"Коврики для молитвы"},
         {categoryru:"Прихожая",slug:"Коврики для прихожей"},
         {categoryru:"Ванная",slug:"Коврики для ванной"},
+        {categoryru:"Фигурные",slug:"Фигурные"},
     ]
   const changeCategory = (en) => {
     setFilter(en)
