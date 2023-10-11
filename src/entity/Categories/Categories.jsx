@@ -14,18 +14,18 @@ export default function Categories() {
     setFilter(en)
   }
   const ref = useRef();
-  useEffect(() => {
-    ref?.current?.scrollTo({
-      left:100,
-      behavior:"smooth"
-    })
-    setTimeout(() => { 
-      ref?.current.scrollTo({
-        left:0,
-        behavior:"smooth"
-      })
-     }, 500)
-  },[ref])
+  // useEffect(() => {
+  //   ref?.current?.scrollTo({
+  //     left:100,
+  //     behavior:"smooth"
+  //   })
+  //   setTimeout(() => { 
+  //     ref?.current.scrollTo({
+  //       left:0,
+  //       behavior:"smooth"
+  //     })
+  //    }, 500)
+  // },[ref])
   return (
     <div className='category-wrapper' ref={ref}>
         {categories?.map((category,id) => <div key={id} onClick={() => changeCategory(category.slug)} className={`category-item ${category.slug === filtredAt ? "active" : ""}`}>

@@ -16,15 +16,17 @@ function App() {
     const readFile = async () => {
       try {
         setload(true)
-        const link = await StorageServices.getExel("gs://amour-fleurs-ar.appspot.com/CarpetsTemplate3.xlsx")
-        const workbook = read(link,{type:'binary'});
-        const sheetName = workbook.SheetNames[0];
-        const worksheet = workbook.Sheets[sheetName];
-        const prd = utils.sheet_to_json(worksheet)?.map((el) => {
+        const link = await StorageServices.getExel("gs://amour-fleurs-ar.appspot.com/CarpetsTemplate_2.xlsx")
+        if (link) {
+          const workbook = read(link,{type:'binary'});
+          const sheetName = workbook.SheetNames[0];
+          const worksheet = workbook.Sheets[sheetName];
+          const prd = utils.sheet_to_json(worksheet)?.map((el) => {
           const url = StorageServices.getImage(el?.Изображение)
           return ({...el,Изображение: url})
         })
         setProducts(prd);
+        }
         setload(false)
       } catch (error) {
         console.error('Error reading file:', error);

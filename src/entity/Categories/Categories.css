@@ -1,7 +1,7 @@
 .category-wrapper{
-    display: flex;
-    align-items: center;
     overflow: scroll hidden;
+    max-width: 100%;
+    display: flex;
 }
 .category-wrapper::-webkit-scrollbar{
     display: none;
