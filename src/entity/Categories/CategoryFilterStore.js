@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
 export const useCategoryFilterStore = create(((set) => ({
-    filtredAt:"all",
+    filtredAt:"Все",
     setFilter: (filter) => set(() => ({
         filtredAt:filter,
     })),

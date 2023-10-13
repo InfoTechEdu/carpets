@@ -5,6 +5,7 @@ import CarpetModel from '../entity/CarpetModel/CarpetModel';
 import { useParams } from 'react-router-dom';
 import { StorageServices } from '../services/StorageServices/StorageServices';
 import { useProductsStore } from './Main';
+import pathCreator from '../helpers/pathCreator';
 
 export default function Carpet() {
     const all = useProductsStore(state => state.products)
@@ -13,12 +14,16 @@ export default function Carpet() {
     const [load, setload] = useState(true)
     const [width, setWidth] = useState(null);
     const [length, setLength] = useState(null);
+
+    let textureUrl;
     useEffect(() => {
         all.forEach((el) => {
           console.log("Длина" + el?.Длина);
           if (el.Код === id) {
             console.log("EL.ДЛИНА:" + el.Длина);
-            StorageServices.getTexture(el?.Текстура)
+
+            let texturePath = pathCreator("texture_images/" + el?.Категория + "/" + el?.Код + ".jpg");
+            StorageServices.getTexture(texturePath)
             .then(url => {
               if (el) {
                 setcarpet({...el,texture:url})
@@ -34,7 +39,9 @@ export default function Carpet() {
     <div className="carpet" >
         <div className='container mt-3'>
               <BackButton />
-              <CarpetModel load={load} textureImage={carpet?.Текстура} typeform={carpet?.Форма} textureLength={length} textureWidth={width}/>
+              {/* <CarpetModel load={load} textureImage={pathCreator(carpet?.Категория + "/" + carpet?.Код + ".jpg")} typeform={carpet?.Форма} textureLength={length} textureWidth={width}/> */}
+              <CarpetModel load={load} textureImage={carpet?.texture} typeform={carpet?.Форма} textureLength={length} textureWidth={width}/>
+
         </div>
         <BottomInfo carpet={carpet}/>
     </div>

@@ -12,7 +12,7 @@ export default function CarpetCards({load,setload}) {
     const [carpets, setCarpets] = useState([])
     const filtredAt = useCategoryFilterStore(state => state.filtredAt)
     useEffect(() => {
-      if (filtredAt !== "all") {
+      if (filtredAt !== "Все") {
         setCarpets(products.filter(el => el.Категория === filtredAt))
       } else {
         setCarpets(products)

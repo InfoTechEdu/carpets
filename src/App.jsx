@@ -6,6 +6,7 @@ import { Toaster } from "react-hot-toast";
 import { useEffect, useLayoutEffect, useState } from "react";
 import { StorageServices } from "./services/StorageServices/StorageServices";
 import { read, utils } from "xlsx";
+import pathCreator from "./helpers/pathCreator";
 
 
 function App() {
@@ -23,7 +24,8 @@ function App() {
           const sheetName = workbook.SheetNames[0];
           const worksheet = workbook.Sheets[sheetName];
           const prd = utils.sheet_to_json(worksheet)?.map((el) => {
-          const url = StorageServices.getImage(el?.Изображение)
+            let imagePath = pathCreator("preview_images/" + el?.Категория + "/" + el?.Код + ".jpg");
+            const url = StorageServices.getImage(imagePath)
           return ({...el,Изображение: url})
         })
         setProducts(prd);
