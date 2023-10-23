@@ -8,6 +8,7 @@ export default function BottomInfo({carpet}) {
     <div className='BottomInfo'>
         <div className="container">
         <h4>{carpet['Код']}</h4>
+        <p>Размеры: {carpet['Размеры']}</p>
         <div className="row">
             <div className="col-xl-12 col-lg-12 col-md-12 col-12 my-xl-2 my-1">
                 <Button href={carpet['Ссылка на Wildberries'] ? carpet['Ссылка на Wildberries'] : "https://wildberries.com/def"} bgColor="#CA11AC" title="Купить"/>

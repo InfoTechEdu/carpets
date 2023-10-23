@@ -59,6 +59,10 @@ export const ModelViewer = ({ type = "square", textureImage = "", alt, textureLe
             switch (type) {
               case "square":
                 return require(`../../assets/3dmodels/squarecarpet.glb`);
+              case "square_set":
+                return require(`../../assets/3dmodels/square_set.glb`);
+              case "oval_set":
+                return require(`../../assets/3dmodels/oval_set.glb`);
               case "square_withedges":
                   return require("../../assets/3dmodels/squarecarpet_withedges.glb");
               case "oval_small":
